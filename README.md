@@ -25,6 +25,10 @@ Pelin säännöt yms. selvitellään myöhemmin. Projekti voi mahdolliseti käyt
 Java 17,
 SpringBoot 3.2.2
 
+# backlogit
+Tarinat: https://github.com/users/SajariS/projects/5/views/2
+Sprintti: https://github.com/users/SajariS/projects/6/views/1
+
 # RedWine
 
 Sampo Lehtonen,
