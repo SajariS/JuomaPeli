@@ -7,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Player {
@@ -21,7 +22,9 @@ public class Player {
 	@Enumerated(EnumType.STRING)
     private Decision decision;
 	
-//	private Character datingPartner;
+	@OneToOne(mappedBy = "player")
+	private Character character;
+	
 //	private Game gameId; 
 	
 	public Player(String userName) {
@@ -56,5 +59,14 @@ public class Player {
     public void setDecision(Decision decision) {
         this.decision = decision;
     }
+
+	public Character getCharacter() {
+		return character;
+	}
+
+	public void setCharacter(Character character) {
+		this.character = character;
+	}
+    
 
 }
