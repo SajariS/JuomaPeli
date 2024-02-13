@@ -15,6 +15,9 @@ Pelin kulku:
 7.	Peli jatkuu samalla kaavalla, ja kaikki pelaajat juovat jokaisen kolmansille, viidensille ja kuudensille treffeille.
 8.	Peli päättyy, kun kaikki pelaajat ovat käyneet kuusilla treffeillään.
 
+Käyttöliittymä
+https://www.figma.com/file/w838b3bW6LBu98DKPo6hQJ/Treffipeli?type=design&node-id=2%3A2&mode=design&t=ilmjYHuqAJE0XGyR-1
+
 
 
 //RedWine ryhmän projekti, tarkoituksena tehdä korttipeli, jonka client skaalaautuu eri laitteille.
