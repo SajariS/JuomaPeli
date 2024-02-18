@@ -1,5 +1,6 @@
 package RW.JuomaPeli.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +9,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import RW.JuomaPeli.domain.*;
+import RW.JuomaPeli.service.CardService;
 
 @RestController
 public class RestCardController {
 	
 	@Autowired
 	private CardRepository cRepo;
+	@Autowired
+	private CardService cardService;
 	
 	
 	//Tällä hetkellä palauttaa ja pyytää suoraan entityjä, tulevaisuudessa vaihtuu DTO:si
@@ -24,6 +29,12 @@ public class RestCardController {
 	public ResponseEntity<List<Card>> cardListRest() {
 		List<Card> cards = (List<Card>) cRepo.findAll();
 		return new ResponseEntity<List<Card>>(cards, HttpStatus.OK);
+	}
+	///ES. api/cards/custom?players=2
+	@GetMapping("/api/cards/custom")
+	public List<Card> getCards(@RequestParam(name = "players") int players) {
+		List<Card> cards = cardService.dealCards(players);
+		return cards;
 	}
 	
 	@PostMapping("/api/cards")

@@ -7,6 +7,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -25,11 +27,14 @@ public class Player {
 	@OneToOne(mappedBy = "player")
 	private Character character;
 	
-//	private Game gameId; 
+	@ManyToOne
+	@JoinColumn(name="gameId")
+	private Game game; 
 	
-	public Player(String userName) {
+	public Player(String userName, Game game) {
 		super();
 		this.userName = userName;
+		this.game = game;
 	}
 	
 	public Player() {
@@ -66,6 +71,14 @@ public class Player {
 
 	public void setCharacter(Character character) {
 		this.character = character;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
 	}
     
 
