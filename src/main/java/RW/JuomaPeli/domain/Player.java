@@ -29,8 +29,27 @@ public class Player {
 	
 	@ManyToOne
 	@JoinColumn(name="gameId")
-	private Game game; 
+	private Game game;
 	
+	// Demoa varten helpotus
+	private String code;
+	
+	
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public Player(String userName, String code) {
+		super();
+		this.userName = userName;
+		this.code = code;
+	}
+
 	public Player(String userName, Game game) {
 		super();
 		this.userName = userName;
