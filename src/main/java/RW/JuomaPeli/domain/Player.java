@@ -34,8 +34,18 @@ public class Player {
 	// Demoa varten helpotus
 	private String code;
 	
+	private boolean isHost;
 	
 	
+	
+	public boolean isHost() {
+		return isHost;
+	}
+
+	public void setHost(boolean isHost) {
+		this.isHost = isHost;
+	}
+
 	public String getCode() {
 		return code;
 	}
@@ -48,6 +58,15 @@ public class Player {
 		super();
 		this.userName = userName;
 		this.code = code;
+	}
+	
+	
+
+	public Player(String userName, String code, boolean isHost) {
+		super();
+		this.userName = userName;
+		this.code = code;
+		this.isHost = isHost;
 	}
 
 	public Player(String userName, Game game) {

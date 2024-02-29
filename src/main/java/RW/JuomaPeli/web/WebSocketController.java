@@ -31,7 +31,7 @@ public class WebSocketController {
 	}
 	
 	@MessageMapping("/join/{code}")
-	@SendTo("/topic/{code}")
+	@SendTo("/lobby/{code}")
 	public List<Player> sendJoinInfo(@DestinationVariable String code, Player player) {
 		System.out.println(player);
 		System.out.println(code);

@@ -17,11 +17,11 @@ public class RestWSLobbyController {
 	@Autowired
 	private PlayerRepository pRepo;
 	
-	@DeleteMapping("/api/lobby")
+	@DeleteMapping("/wsapi/lobby")
 	public void removePlayer(@RequestBody Player player) {
 		try {
 			pRepo.deleteById(player.getId());
-			messagingTemplate.convertAndSend("/topic/" + player.getCode(), pRepo.findByCode(player.getCode()));
+			messagingTemplate.convertAndSend("/lobby/" + player.getCode(), pRepo.findByCode(player.getCode()));
 		}
 		catch(IllegalArgumentException e) {
 			System.out.println("Error: " + e.getMessage());
