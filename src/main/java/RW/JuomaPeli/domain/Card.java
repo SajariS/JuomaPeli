@@ -1,10 +1,13 @@
 package RW.JuomaPeli.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,7 +25,11 @@ public class Card {
 	
 	private Boolean userMade;
 	
-	// Yhdistykset puuttuu, tehdään myöhemmin kun muut taulut tulevat
+	@ManyToMany
+	private List<Character> character;
+	
+	@ManyToMany
+	private List<Game> game;
 
 	public Long getId() {
 		return id;
@@ -54,6 +61,22 @@ public class Card {
 
 	public void setUserMade(Boolean userMade) {
 		this.userMade = userMade;
+	}
+
+	public List<Character> getCharacter() {
+		return character;
+	}
+
+	public void setCharacter(List<Character> character) {
+		this.character = character;
+	}
+
+	public List<Game> getGame() {
+		return game;
+	}
+
+	public void setGame(List<Game> game) {
+		this.game = game;
 	}
 
 	public Card(String title, String desc, Boolean userMade) {

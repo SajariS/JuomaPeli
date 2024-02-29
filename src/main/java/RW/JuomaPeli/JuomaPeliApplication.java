@@ -9,6 +9,8 @@ import RW.JuomaPeli.domain.Card;
 import RW.JuomaPeli.domain.CardRepository;
 import RW.JuomaPeli.domain.Character;
 import RW.JuomaPeli.domain.CharacterRepository;
+import RW.JuomaPeli.domain.Game;
+import RW.JuomaPeli.domain.GameRepository;
 import RW.JuomaPeli.domain.Player;
 import RW.JuomaPeli.domain.PlayerRepository;
 
@@ -20,12 +22,20 @@ public class JuomaPeliApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo (CardRepository cRepo, PlayerRepository pRepo, CharacterRepository characterRepo){
-		return (args) -> {
-			cRepo.save(new Card("Testi", "Testidesc", false));
-			pRepo.save(new Player("pelaaja"));
-			characterRepo.save(new Character("Kumppani", 30, null, pRepo.findByUserName("pelaaja")));
-		};
+	public CommandLineRunner demo(CardRepository cRepo, PlayerRepository pRepo, CharacterRepository characterRepo, GameRepository gRepo) {
+	    return (args) -> {
+	        for (int i = 0; i < 10; i++) {
+	            Card card = new Card("Card " + (i + 1), "Description for Card " + (i + 1), false);
+	            cRepo.save(card);
+	        }
+	        
+	        gRepo.save(new Game("123456"));
+	        pRepo.save(new Player("pelaaja", gRepo.findByCode("123456")));
+	        characterRepo.save(new Character("Kumppani", 30, null, pRepo.findByUserName("pelaaja")));
+	        
+	    };
 	}
-
 }
+
+
+
