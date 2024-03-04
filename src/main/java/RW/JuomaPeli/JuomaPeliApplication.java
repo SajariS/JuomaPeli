@@ -24,9 +24,16 @@ public class JuomaPeliApplication {
 	@Bean
 	public CommandLineRunner demo(CardRepository cRepo, PlayerRepository pRepo, CharacterRepository characterRepo, GameRepository gRepo) {
 	    return (args) -> {
-	        for (int i = 0; i < 10; i++) {
-	            Card card = new Card("Card " + (i + 1), "Description for Card " + (i + 1), false);
-	            cRepo.save(card);
+	        for (int i = 0; i < 12; i++) {
+	        	if(i % 2 == 0) {
+	        		Card card = new Card("Good Card " + (i + 1), "Description " + (i + 1), false, true);
+	        		cRepo.save(card);
+	        	}
+	        	else {
+	        		Card card = new Card("Bad Card " + (i + 1), "Description " + (i + 1), false, false);
+	        		cRepo.save(card);
+	        	}
+	            
 	        }
 	        
 	        gRepo.save(new Game("123456"));

@@ -23,6 +23,8 @@ public class Card {
 	
 	private String desc;
 	
+	private Boolean goodTrait;
+	
 	private Boolean userMade;
 	
 	@ManyToMany
@@ -79,11 +81,20 @@ public class Card {
 		this.game = game;
 	}
 
-	public Card(String title, String desc, Boolean userMade) {
+	public Boolean getGoodTrait() {
+		return goodTrait;
+	}
+
+	public void setGoodTrait(Boolean goodTrait) {
+		this.goodTrait = goodTrait;
+	}
+
+	public Card(String title, String desc, Boolean userMade, Boolean goodTrait) {
 		super();
 		this.title = title;
 		this.desc = desc;
 		this.userMade = userMade;
+		this.goodTrait = goodTrait;
 	}
 
 	public Card() {
