@@ -2,6 +2,8 @@ package RW.JuomaPeli.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,7 @@ public class Character {
 	@ManyToMany
 	private List<Card> card;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="playerId")
 	private Player player;
