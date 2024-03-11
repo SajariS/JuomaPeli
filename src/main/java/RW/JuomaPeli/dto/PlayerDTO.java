@@ -4,7 +4,7 @@ public class PlayerDTO {
 	
 	private String userName;
     private String code;
-    private boolean isHost;
+    private boolean host;
     
     
 	public String getUserName() {
@@ -19,17 +19,17 @@ public class PlayerDTO {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public boolean isHost() {
-		return isHost;
+	public boolean getHost() {
+		return host;
 	}
 	public void setHost(boolean isHost) {
-		this.isHost = isHost;
+		this.host = isHost;
 	}
 	public PlayerDTO(String userName, String code, boolean isHost) {
 		super();
 		this.userName = userName;
 		this.code = code;
-		this.isHost = isHost;
+		this.host = isHost;
 	}
     
 }

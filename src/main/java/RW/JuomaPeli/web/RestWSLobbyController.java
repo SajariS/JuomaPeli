@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,11 +19,11 @@ public class RestWSLobbyController {
 	@Autowired
 	private PlayerRepository pRepo;
 	
-	@CrossOrigin(origins = "http://localhost:5173")
-	@DeleteMapping("/wsapi/lobby")
-	public void removePlayer(@RequestBody Player player) {
+	@DeleteMapping("/wsapi/lobby/{id}")
+	public void removePlayer(@PathVariable Long id) {
 		try {
-			pRepo.deleteById(player.getId());
+			Player player = pRepo.findById(id).get();
+			pRepo.deleteById(id);
 			messagingTemplate.convertAndSend("/lobby/" + player.getCode(), pRepo.findByCode(player.getCode()));
 		}
 		catch(IllegalArgumentException e) {

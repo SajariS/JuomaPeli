@@ -14,7 +14,7 @@ public class PlayerService {
 	private PlayerRepository playerRepository;
 	
 	public Player createPlayer(PlayerDTO playerDTO) {
-        Player player = new Player(playerDTO.getUserName(), playerDTO.getCode(), playerDTO.isHost());
+        Player player = new Player(playerDTO.getUserName(), playerDTO.getCode(), playerDTO.getHost());
         return playerRepository.save(player);
     }
 
