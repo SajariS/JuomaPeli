@@ -16,15 +16,34 @@ public class CardService {
 	@Autowired
     private CardRepository cardRepository;
 
-    public List<Card> dealCards(int numberOfPlayers) {
+    public List<List<Card>> dealCards(int numberOfPlayers) {
     	List<Card> allCards = (List<Card>) cardRepository.findAll();
-        Collections.shuffle(allCards);
+    	List<Card> goodCards = new ArrayList<>();
+    	List<Card> badCards = new ArrayList<>();
+    	
+    	for(int i = 0; i < allCards.size(); i++) {
+    		Card card = allCards.get(i);
+    		if(card.getGoodTrait()) {
+    			goodCards.add(card);
+    		}
+    		else {
+    			badCards.add(card);
+    		}
+    	}
+        Collections.shuffle(goodCards);
+        Collections.shuffle(badCards);
 
-        List<Card> dealtCards = new ArrayList<>();
-        int totalCardsToDeal = numberOfPlayers * 6;
+        List<List<Card>> dealtCards = new ArrayList<>();
 
-        for (int i = 0; i < totalCardsToDeal; i++) {
-            dealtCards.add(allCards.get(i));
+        for (int i = 0; i < numberOfPlayers; i++) {
+        	List<Card> hand = new ArrayList<>();
+        	for (int j = 0; j < 3; j++) {
+                hand.add(goodCards.remove(0));
+            }
+        	for (int j = 0; j < 3; j++) {
+                hand.add(badCards.remove(0));
+            }
+        	dealtCards.add(hand);
         }
 
         return dealtCards;

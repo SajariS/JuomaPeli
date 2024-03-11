@@ -32,8 +32,8 @@ public class RestCardController {
 	}
 	///ES. api/cards/custom?players=2
 	@GetMapping("/api/cards/custom")
-	public List<Card> getCards(@RequestParam(name = "players") int players) {
-		List<Card> cards = cardService.dealCards(players);
+	public List<List<Card>> getCards(@RequestParam(name = "players") int players) {
+		List<List<Card>> cards = cardService.dealCards(players);
 		return cards;
 	}
 	

@@ -31,12 +31,10 @@ public class WebSocketController {
 	}
 	
 	@MessageMapping("/join/{code}")
-	@SendTo("/topic/{code}")
+	@SendTo("/lobby/{code}")
 	public List<Player> sendJoinInfo(@DestinationVariable String code, Player player) {
 		System.out.println(player);
 		System.out.println(code);
-		player.setCode(code);
-		pRepo.save(player);
 		
 		return pRepo.findByCode(code);
 	}

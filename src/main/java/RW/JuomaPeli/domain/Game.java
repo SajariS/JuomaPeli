@@ -2,6 +2,8 @@ package RW.JuomaPeli.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,9 +22,11 @@ public class Game {
 	
 	private String code;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "game")
 	private List<Player> player;
 	
+	@JsonIgnore
 	@ManyToMany
 	private List<Card> cards;
 
