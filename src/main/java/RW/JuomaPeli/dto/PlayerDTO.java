@@ -25,5 +25,11 @@ public class PlayerDTO {
 	public void setHost(boolean isHost) {
 		this.isHost = isHost;
 	}
+	public PlayerDTO(String userName, String code, boolean isHost) {
+		super();
+		this.userName = userName;
+		this.code = code;
+		this.isHost = isHost;
+	}
     
 }
