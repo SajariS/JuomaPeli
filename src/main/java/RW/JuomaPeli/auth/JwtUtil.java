@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class JwtUtil {
 
 	private final String SECRET = "abcdef";
-	private final long EXPIRATION_TIME = 60*60*1000;
+	private final long EXPIRATION_TIME = 60; // 1 tunti
 
 	private final JwtParser jwtParser;
 
