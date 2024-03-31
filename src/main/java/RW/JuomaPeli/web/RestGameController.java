@@ -19,9 +19,9 @@ public class RestGameController {
 	private GameRepository gRepo;
 	
 	
-	@GetMapping("/api/games/{id}")
-	public ResponseEntity<Game> checkGameById(@PathVariable("id") Long id) {
-		Optional<Game> game = gRepo.findById(id);
+	@GetMapping("/api/games/{code}")
+	public ResponseEntity<Game> checkGameById(@PathVariable("code") String code) {
+		Optional<Game> game = Optional.ofNullable(gRepo.findByCode(code));
 		
 		if(game.isPresent()) {
 			return new ResponseEntity<>(game.get(), HttpStatus.OK);
@@ -29,5 +29,12 @@ public class RestGameController {
 		else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@GetMapping("/api/games")
+	public ResponseEntity<Iterable<Game>> getGames() {
+		Iterable<Game> games = gRepo.findAll();
+		
+		return new ResponseEntity<>(games, HttpStatus.OK);
 	}
 }

@@ -30,7 +30,7 @@ public class Character {
 	private List<Card> card;
 	
 	@JsonIgnore
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	@OneToOne
 	@JoinColumn(name="playerId")
 	private Player player;
 
