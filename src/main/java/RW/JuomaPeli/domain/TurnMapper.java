@@ -20,7 +20,25 @@ public class TurnMapper {
 	public TurnDTO handleTurn(TurnDTO oldTurn) {
 		Game game = gRepo.findByCode(oldTurn.getCode());
 		Long nextPlayerId = null;
-		Card pulledCard = game.getCards().get(0);
+		Card pulledCard = null;
+		
+		for(Card card : game.getCards()) {
+			if(card.getId() == oldTurn.getPulledCard().getId()) {
+				int index = game.getCards().indexOf(card);
+				
+				if(index == -1) {
+					//Ei löydy TODO käsittele virhe
+				}
+				else if(index == game.getCards().size() - 1) {
+					//Listan viimeinen kortti, tee jotain?
+					//Tällä hetkellä palauta ensimmäinen kortti
+					pulledCard = game.getCards().get(0);
+				}
+				else {
+					pulledCard = game.getCards().get(index + 1);
+				}
+			}
+		}
 		
 		//Siirtää vuoron seuraavalle pelaajalle, arvo -> nextPlayerId
 		for(Player player : game.getPlayer()) {
@@ -40,7 +58,6 @@ public class TurnMapper {
 				}
 			}
 		}
-		//TODO käsittele kortin veto pelin pakasta
 		
 		//Palautetaan "tuore" vuoro, seuraavan pelaajan id, pelin koodi, nostettu kortti ja pelaajan valinta
 		return new TurnDTO(nextPlayerId, oldTurn.getCode(), pulledCard, false);

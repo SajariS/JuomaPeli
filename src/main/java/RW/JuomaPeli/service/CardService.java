@@ -16,7 +16,7 @@ public class CardService {
 	@Autowired
     private CardRepository cardRepository;
 
-    public List<List<Card>> dealCards(int numberOfPlayers) {
+    public List<Card> dealCards(int numberOfPlayers) {
     	List<Card> allCards = (List<Card>) cardRepository.findAll();
     	List<Card> goodCards = new ArrayList<>();
     	List<Card> badCards = new ArrayList<>();
@@ -30,6 +30,13 @@ public class CardService {
     			badCards.add(card);
     		}
     	}
+    	
+    	goodCards.addAll(badCards);
+    	return goodCards;
+    	
+    	/*
+    	 * Vedetään ns. pakasta päällimäinen kortti vuorolla, jolloin jokaiselle pelaajalle ei tavitse jakaa "kättä" suoraan
+    	 * Hyvä ratkaisu, ei vaan sovi tähän 
         Collections.shuffle(goodCards);
         Collections.shuffle(badCards);
 
@@ -46,7 +53,8 @@ public class CardService {
         	dealtCards.add(hand);
         }
 
-        return dealtCards;
+        return dealtCards; 
+        */
     }
 	
 }

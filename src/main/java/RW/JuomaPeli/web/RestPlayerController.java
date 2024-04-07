@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import RW.JuomaPeli.domain.*;
 import RW.JuomaPeli.dto.PlayerDTO;
-import RW.JuomaPeli.service.PlayerService;
+import RW.JuomaPeli.service.*;
 
 
 @RestController
@@ -25,6 +25,8 @@ public class RestPlayerController {
     private GameRepository gameRepository;
     @Autowired
     private PlayerService playerService;
+    @Autowired
+    private GameService GameService;
     
     @GetMapping("/api/players")
     public ResponseEntity<List<Player>> getPlayerList() {
@@ -36,7 +38,7 @@ public class RestPlayerController {
     public ResponseEntity<Player> addPlayer(@RequestBody Player player) {
     	System.out.println(player.getHost());
         if(player.getHost()) {
-        	player.setGame(gameRepository.save(new Game(player.getCode())));
+        	player.setGame(GameService.setUpGame(player.getCode()));
         }
         else  {
         	player.setGame(gameRepository.findByCode(player.getCode()));

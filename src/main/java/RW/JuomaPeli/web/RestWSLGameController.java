@@ -22,6 +22,6 @@ public class RestWSLGameController {
 		//Käsittelee hahmon muutokset, joita vuorolla tapahtuu, ei palauta mitään
 		tMapper.handleCharecterChange(turn);
 		//Lähettää uuden vuoron kanavalle 
-		messagingTemplate.convertAndSend("<peli osoite>" + turn.getCode(), tMapper.handleTurn(turn));
+		messagingTemplate.convertAndSend("/game/" + turn.getCode(), tMapper.handleTurn(turn));
 	}
 }

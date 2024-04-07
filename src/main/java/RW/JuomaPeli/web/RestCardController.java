@@ -31,11 +31,12 @@ public class RestCardController {
 		return new ResponseEntity<List<Card>>(cards, HttpStatus.OK);
 	}
 	///ES. api/cards/custom?players=2
+	/* karvalakki ratkaisu kommentilla pois
 	@GetMapping("/api/cards/custom")
 	public List<List<Card>> getCards(@RequestParam(name = "players") int players) {
 		List<List<Card>> cards = cardService.dealCards(players);
 		return cards;
-	}
+	} */
 	
 	@PostMapping("/api/cards")
 	public ResponseEntity<Card> addCard(@RequestBody Card card) {
