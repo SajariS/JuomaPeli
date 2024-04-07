@@ -3,6 +3,8 @@ package RW.JuomaPeli.auth;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +19,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @Component
 public class JwtUtil {
 
-	private final String SECRET = "abcdef";
+	
+	private String SECRET;
 	private final long EXPIRATION_TIME = 60; // 1 tunti
 
 	private final JwtParser jwtParser;
@@ -25,7 +28,8 @@ public class JwtUtil {
     private final String TOKEN_HEADER = "Authorization";
     private final String TOKEN_PREFIX = "Bearer ";
 
-    public JwtUtil(){
+    public JwtUtil(@Value("${my.secret.key}") String secret){
+        this.SECRET = secret;
         this.jwtParser = Jwts.parser().setSigningKey(SECRET);
     }
 
