@@ -43,4 +43,12 @@ public class RestCardController {
 		Card addedCard = cRepo.save(card);
 		return new ResponseEntity<Card>(addedCard, HttpStatus.OK);
 	}
+	
+	@PostMapping("/api/cards/many")
+	public ResponseEntity <List<Card>> addMultipleCards(@RequestBody List<Card>cards){
+		for(Card card : cards) {
+			cRepo.save(card);
+		}
+		return new ResponseEntity<List<Card>>(cards, HttpStatus.OK);
+	}
 }
