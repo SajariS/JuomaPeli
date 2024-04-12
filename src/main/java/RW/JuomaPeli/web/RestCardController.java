@@ -30,6 +30,21 @@ public class RestCardController {
 		List<Card> cards = (List<Card>) cRepo.findAll();
 		return new ResponseEntity<List<Card>>(cards, HttpStatus.OK);
 	}
+	
+	@GetMapping("/api/cards/deal")
+	public ResponseEntity<?> dealCards(@RequestParam(required = true) int playerCount){
+		List<Card> cards = cardService.dealCards(playerCount);
+		if (cards == null) {
+	        return ResponseEntity
+	            .status(HttpStatus.BAD_REQUEST)
+	            .body("Not enough cards for the requested player count.");
+	    }
+		else if(cards.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Card>>(cards, HttpStatus.OK);
+	}
+	
 	///ES. api/cards/custom?players=2
 	/* karvalakki ratkaisu kommentilla pois
 	@GetMapping("/api/cards/custom")
