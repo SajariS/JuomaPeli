@@ -27,7 +27,9 @@ public class RestPlayerController {
     @Autowired
     private PlayerService playerService;
     @Autowired
-    private GameService GameService;
+    private GameService gameService;
+    @Autowired
+    private CharacterService cService;
     
     @GetMapping("/api/players")
     public ResponseEntity<List<Player>> getPlayerList() {
@@ -44,11 +46,14 @@ public class RestPlayerController {
     public ResponseEntity<Player> addPlayer(@RequestBody Player player) {
     	System.out.println(player.getHost());
         if(player.getHost()) {
-        	player.setGame(GameService.setUpGame(player.getCode()));
+        	player.setGame(gameService.setUpGame(player.getCode()));
         }
         else  {
         	player.setGame(gameRepository.findByCode(player.getCode()));
         }
+        playerRepository.save(player);
+        player.setCharacter(cService.createNewCharacter(player));
+        
         return new ResponseEntity<>(playerRepository.save(player), HttpStatus.CREATED);
     }
     

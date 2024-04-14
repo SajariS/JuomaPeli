@@ -22,6 +22,8 @@ public class CardService {
     	int totalNumOfCards = numberOfPlayers * 6;
     	int goodCardsCount = 0, badCardsCount = 0, cardCount = 0, i = 0;
     	
+    	//Ei välttämättä paras ratkaisu, jos kortteja tehdään vaan 12 :D
+    	//Karvalakki korjauksena lisäsin korttien generointiin lukua
     	if(totalNumOfCards > allCards.size()) {
     		return null;
     	}

@@ -24,11 +24,9 @@ public class GameService {
 	public Game setUpGame(String code) {
 		GameDTO gameDto = new GameDTO(code);
 		//Jatko kehitys pelaaja määrään, mennään nyt neljällä alkuun
-		List<Card> pulledCards = cService.dealCards(4);
-		
+		List<Card> pulledCards = cService.dealCards(4);	
 		gameDto.setCards(pulledCards);
 		
 		return gRepo.save(gMapper.dtoToGame(gameDto));
 	}
-	// TODO ManyToMany fiksit
 }
