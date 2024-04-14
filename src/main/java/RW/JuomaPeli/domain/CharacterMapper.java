@@ -12,7 +12,7 @@ public class CharacterMapper {
 		Character character = new Character(charDto.getName(), charDto.getAge(), charDto.getPlayer());
 		character.setId(charDto.getId());
 		
-		if(charDto.getCards().size() != 0) {
+		if(charDto.getCards() != null) {
 			for(Card card : charDto.getCards()) {
 				character.getCharacterCard().add(card);
 			}

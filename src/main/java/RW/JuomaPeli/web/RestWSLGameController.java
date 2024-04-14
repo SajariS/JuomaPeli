@@ -30,7 +30,6 @@ public class RestWSLGameController {
 	@GetMapping("/wsapi/game/{code}")
 	public void startGame(@PathVariable String code) {
 		System.out.println("TEsti");
-		tMapper.handleStart(code);
-		//messagingTemplate.convertAndSend("/game/" + code, tMapper.handleStart(code) );
+		messagingTemplate.convertAndSend("/game/" + code, tMapper.handleStart(code) );
 	}
 }

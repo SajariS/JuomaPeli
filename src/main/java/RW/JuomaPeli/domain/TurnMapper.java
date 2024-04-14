@@ -38,9 +38,11 @@ public class TurnMapper {
 					//Listan viimeinen kortti, tee jotain?
 					//Tällä hetkellä palauta ensimmäinen kortti
 					pulledCard = gameDto.getCards().get(0);
+					System.out.println(pulledCard.getId());
 				}
 				else {
 					pulledCard = gameDto.getCards().get(index + 1);
+					System.out.println(pulledCard.getId());
 				}
 			}
 		}
@@ -71,28 +73,40 @@ public class TurnMapper {
 	//Käsittelee hahmoon liittyvät toimeenpiteet, nollaa sen jne 
 	public void handleCharecterChange(TurnDTO playerTurn) {
 		Player player = pRepo.findById(playerTurn.getPlayersTurn()).get();
-		CharacterDTO characterDto = cMapper.characterToDto(cRepo.findByPlayer(player));
-		List<Card> cards = characterDto.getCards();
+		Character character = cRepo.findByPlayer(player);
 		
 		//Valinta false, eli nollataan hahmo
 		if(!playerTurn.isChoice())  {
 			//Ei välttämättä toimi ManyToMany kanssa, pitää testata. Jos ei toimi niin delete ja uusi alle
-			characterDto.setCards(null);
+			character.getCharacterCard().clear();
 		}
 		else {
-			cards.add(playerTurn.getPulledCard());
-			characterDto.setCards(cards);
+			//karvalakki korjaus paskaan sekoitukseen :D
+			//Jos lisättävä kortti on jo valmiiksi hahmon "omistuksessa" skipataan lisäys
+			//Näin vältytään kaatuilu
+			boolean exists = false;
+			for(Card card : character.getCharacterCard()) {
+				if(card.getId() == playerTurn.getPulledCard().getId()) {
+					exists = true;
+					System.out.println("Kopio!");
+					break;
+				}
+			}
+			
+			if(!exists) {
+				character.getCharacterCard().add(playerTurn.getPulledCard());
+			}
 		}
 		
-		cRepo.save(cMapper.dtoToCharacter(characterDto));
+		cRepo.save(character);
 	}
 	
 	public TurnDTO handleStart(String code) {
-		Game game = gRepo.findByCode(code);
-		System.out.println(game.getPlayers());
-		//Player firstPlayer = game.getPlayers().get(0);
-		//TurnDTO turn = new TurnDTO(firstPlayer.getId(), code, game.getCards().get(0), false);
-		return new TurnDTO();
+		GameDTO gameDto = gMapper.GameToDto(gRepo.findByCode(code));
+		System.out.println(gameDto.getCards().size());
+		Player firstPlayer = gameDto.getPlayers().get(0);
+		return new TurnDTO(firstPlayer.getId(), code, gameDto.getCards().get(0), false);
+
 	}
 
 }
