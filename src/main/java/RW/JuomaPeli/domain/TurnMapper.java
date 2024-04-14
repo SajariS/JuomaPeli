@@ -14,48 +14,52 @@ public class TurnMapper {
 	private CharacterRepository cRepo;
 	@Autowired
 	private PlayerRepository pRepo;
+	@Autowired
+	private GameMapper gMapper;
+	@Autowired
+	private CharacterMapper cMapper;
 	
 	//Käsittelee annetun vuoron, eli siirtää vuoron seuraavalle, vetää pakasta kortin,
 	//Ja nolla valinnan falseen
 	// TODO Korjaa ManyToMany fiksiin
 	public TurnDTO handleTurn(TurnDTO oldTurn) {
-		Game game = gRepo.findByCode(oldTurn.getCode());
+		GameDTO gameDto = gMapper.GameToDto(gRepo.findByCode(oldTurn.getCode()));
 		Long nextPlayerId = null;
 		Card pulledCard = null;
 		
-		for(Card card : game.getCards()) {
+		for(Card card : gameDto.getCards()) {
 			if(card.getId() == oldTurn.getPulledCard().getId()) {
-				int index = game.getCards().indexOf(card);
+				int index = gameDto.getCards().indexOf(card);
 				
 				if(index == -1) {
 					//Ei löydy TODO käsittele virhe
 				}
-				else if(index == game.getCards().size() - 1) {
+				else if(index == gameDto.getCards().size() - 1) {
 					//Listan viimeinen kortti, tee jotain?
 					//Tällä hetkellä palauta ensimmäinen kortti
-					pulledCard = game.getCards().get(0);
+					pulledCard = gameDto.getCards().get(0);
 				}
 				else {
-					pulledCard = game.getCards().get(index + 1);
+					pulledCard = gameDto.getCards().get(index + 1);
 				}
 			}
 		}
 		
 		//Siirtää vuoron seuraavalle pelaajalle, arvo -> nextPlayerId
-		for(Player player : game.getPlayers()) {
+		for(Player player : gameDto.getPlayers()) {
 			if(player.getId() == oldTurn.getPlayersTurn()) {
-				int index = game.getPlayers().indexOf(player);
+				int index = gameDto.getPlayers().indexOf(player);
 				
 				if(index == -1) {
 					//Ei löydy TODO käsittele virhe
 				}
-				else if(index == game.getPlayers().size() - 1) {
+				else if(index == gameDto.getPlayers().size() - 1) {
 					//Listan viimeinen, käsittele
-					nextPlayerId = game.getPlayers().get(0).getId();
+					nextPlayerId = gameDto.getPlayers().get(0).getId();
 				}
 				else {
 					//Seuraava listasta
-					nextPlayerId = game.getPlayers().get(index + 1).getId();
+					nextPlayerId = gameDto.getPlayers().get(index + 1).getId();
 				}
 			}
 		}
@@ -67,20 +71,20 @@ public class TurnMapper {
 	//Käsittelee hahmoon liittyvät toimeenpiteet, nollaa sen jne 
 	public void handleCharecterChange(TurnDTO playerTurn) {
 		Player player = pRepo.findById(playerTurn.getPlayersTurn()).get();
-		Character character = cRepo.findByPlayer(player);
-		List<Card> cards = character.getCard();
+		CharacterDTO characterDto = cMapper.characterToDto(cRepo.findByPlayer(player));
+		List<Card> cards = characterDto.getCards();
 		
 		//Valinta false, eli nollataan hahmo
 		if(!playerTurn.isChoice())  {
 			//Ei välttämättä toimi ManyToMany kanssa, pitää testata. Jos ei toimi niin delete ja uusi alle
-			character.setCard(null);
+			characterDto.setCards(null);
 		}
 		else {
 			cards.add(playerTurn.getPulledCard());
-			character.setCard(cards);
+			characterDto.setCards(cards);
 		}
 		
-		cRepo.save(character);
+		cRepo.save(cMapper.dtoToCharacter(characterDto));
 	}
 	
 	public TurnDTO handleStart(String code) {

@@ -29,7 +29,7 @@ public class JuomaPeliApplication {
 	public CommandLineRunner demo(CardRepository cRepo, PlayerRepository pRepo, CharacterRepository characterRepo, GameRepository gRepo,
 			UserRepository uRepo) {
 	    return (args) -> {
-	        for (int i = 0; i < 12; i++) {
+	        for (int i = 0; i < 100; i++) {
 	        	if(i % 2 == 0) {
 	        		Card card = new Card("Good Card " + (i + 1), "Description " + (i + 1), false, true);
 	        		cRepo.save(card);
@@ -43,10 +43,10 @@ public class JuomaPeliApplication {
 	        /*
 	        gRepo.save(new Game("123456"));
 	        pRepo.save(new Player("pelaaja", gRepo.findByCode("123456")));
-	        characterRepo.save(new Character("Kumppani", 30, null, pRepo.findByUserName("pelaaja")));
+	        characterRepo.save(new Character("Kumppani", 30, null, pRepo.findByUserName("pelaaja"))); */
 	        //admin & admin, vaihdetaan myöhemmin
 	        uRepo.save(new User("admin", "$2y$10$CI3EBB65FEVSvuEQRj/ok.edyG8OL7HjkP3KpUZFxFzems2aDUcda", "ADMIN"));
-	        */
+	        
 	    };
 	}
 }

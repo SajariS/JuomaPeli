@@ -1,9 +1,14 @@
 package RW.JuomaPeli.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import RW.JuomaPeli.domain.Card;
 import RW.JuomaPeli.domain.Game;
+import RW.JuomaPeli.domain.GameDTO;
+import RW.JuomaPeli.domain.GameMapper;
 import RW.JuomaPeli.domain.GameRepository;
 
 @Service
@@ -13,12 +18,17 @@ public class GameService {
 	private GameRepository gRepo;
 	@Autowired
 	private CardService cService;
+	@Autowired
+	private GameMapper gMapper;
 	
 	public Game setUpGame(String code) {
-		Game game = new Game(code);
+		GameDTO gameDto = new GameDTO(code);
 		//Jatko kehitys pelaaja määrään, mennään nyt neljällä alkuun
-		game.setCards(cService.dealCards(4));
-		return gRepo.save(game);
+		List<Card> pulledCards = cService.dealCards(4);
+		
+		gameDto.setCards(pulledCards);
+		
+		return gRepo.save(gMapper.dtoToGame(gameDto));
 	}
 	// TODO ManyToMany fiksit
 }
