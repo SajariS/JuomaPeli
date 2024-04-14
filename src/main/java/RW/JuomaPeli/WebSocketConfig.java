@@ -21,7 +21,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 	// topic, app, ja ws sijalla voi olla mitä tahansa
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
-		config.enableSimpleBroker("/topic", "/lobby", "/game");
+		config.enableSimpleBroker("/topic", "/lobby", "/lobby/event", "/game");
 		config.setApplicationDestinationPrefixes("/app");
 	}
 	

@@ -44,6 +44,7 @@ public class SecurityConfig  {
 						.requestMatchers(AntPathRequestMatcher.antMatcher("/authenticate")).permitAll()
 						.requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
 						.requestMatchers(AntPathRequestMatcher.antMatcher("/ws/**")).permitAll()
+						.requestMatchers(AntPathRequestMatcher.antMatcher("/wsapi/**")).permitAll()
 						.anyRequest().authenticated())
 				.headers(headers -> headers.disable())
 				.sessionManagement(management -> management

@@ -8,6 +8,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import RW.JuomaPeli.domain.Courier;
+import RW.JuomaPeli.domain.GameRepository;
 import RW.JuomaPeli.domain.Player;
 import RW.JuomaPeli.domain.PlayerRepository;
 
@@ -16,6 +17,8 @@ public class WebSocketController {
 	
 	@Autowired
 	private PlayerRepository pRepo;
+	@Autowired 
+	private GameRepository gRepo;
 
 	// Topic määrittää osoitteen josta käyttäjä tilaa viestejä
 	// eli Vastaanotto ja samalla instanssi on /topic/input

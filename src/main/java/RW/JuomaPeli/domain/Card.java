@@ -29,14 +29,16 @@ public class Card {
 	
 	private Boolean userMade;
 	
+	/* Korjattu
 	@JsonIgnore
 	@ManyToMany
 	private List<Character> character;
-	
+	*/ 
+	/* Korjattu
 	@JsonIgnore
 	@ManyToMany
 	private List<Game> game;
-
+	*/
 	public Long getId() {
 		return id;
 	}
@@ -67,22 +69,6 @@ public class Card {
 
 	public void setUserMade(Boolean userMade) {
 		this.userMade = userMade;
-	}
-
-	public List<Character> getCharacter() {
-		return character;
-	}
-
-	public void setCharacter(List<Character> character) {
-		this.character = character;
-	}
-
-	public List<Game> getGame() {
-		return game;
-	}
-
-	public void setGame(List<Game> game) {
-		this.game = game;
 	}
 
 	public Boolean getGoodTrait() {

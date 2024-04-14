@@ -40,13 +40,13 @@ public class JuomaPeliApplication {
 	        	}
 	            
 	        }
-	        
+	        /*
 	        gRepo.save(new Game("123456"));
 	        pRepo.save(new Player("pelaaja", gRepo.findByCode("123456")));
 	        characterRepo.save(new Character("Kumppani", 30, null, pRepo.findByUserName("pelaaja")));
 	        //admin & admin, vaihdetaan myöhemmin
 	        uRepo.save(new User("admin", "$2y$10$CI3EBB65FEVSvuEQRj/ok.edyG8OL7HjkP3KpUZFxFzems2aDUcda", "ADMIN"));
-	        
+	        */
 	    };
 	}
 }

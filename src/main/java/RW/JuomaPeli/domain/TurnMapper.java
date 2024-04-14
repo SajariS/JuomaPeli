@@ -17,6 +17,7 @@ public class TurnMapper {
 	
 	//Käsittelee annetun vuoron, eli siirtää vuoron seuraavalle, vetää pakasta kortin,
 	//Ja nolla valinnan falseen
+	// TODO Korjaa ManyToMany fiksiin
 	public TurnDTO handleTurn(TurnDTO oldTurn) {
 		Game game = gRepo.findByCode(oldTurn.getCode());
 		Long nextPlayerId = null;
@@ -41,20 +42,20 @@ public class TurnMapper {
 		}
 		
 		//Siirtää vuoron seuraavalle pelaajalle, arvo -> nextPlayerId
-		for(Player player : game.getPlayer()) {
+		for(Player player : game.getPlayers()) {
 			if(player.getId() == oldTurn.getPlayersTurn()) {
-				int index = game.getPlayer().indexOf(player);
+				int index = game.getPlayers().indexOf(player);
 				
 				if(index == -1) {
 					//Ei löydy TODO käsittele virhe
 				}
-				else if(index == game.getPlayer().size() - 1) {
+				else if(index == game.getPlayers().size() - 1) {
 					//Listan viimeinen, käsittele
-					nextPlayerId = game.getPlayer().get(0).getId();
+					nextPlayerId = game.getPlayers().get(0).getId();
 				}
 				else {
 					//Seuraava listasta
-					nextPlayerId = game.getPlayer().get(index + 1).getId();
+					nextPlayerId = game.getPlayers().get(index + 1).getId();
 				}
 			}
 		}
@@ -80,6 +81,14 @@ public class TurnMapper {
 		}
 		
 		cRepo.save(character);
+	}
+	
+	public TurnDTO handleStart(String code) {
+		Game game = gRepo.findByCode(code);
+		System.out.println(game.getPlayers());
+		//Player firstPlayer = game.getPlayers().get(0);
+		//TurnDTO turn = new TurnDTO(firstPlayer.getId(), code, game.getCards().get(0), false);
+		return new TurnDTO();
 	}
 
 }

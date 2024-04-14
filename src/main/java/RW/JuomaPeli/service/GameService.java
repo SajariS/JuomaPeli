@@ -20,5 +20,5 @@ public class GameService {
 		game.setCards(cService.dealCards(4));
 		return gRepo.save(game);
 	}
-	
+	// TODO ManyToMany fiksit
 }
