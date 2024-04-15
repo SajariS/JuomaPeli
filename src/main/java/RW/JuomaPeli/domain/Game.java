@@ -1,14 +1,20 @@
 package RW.JuomaPeli.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
@@ -24,11 +30,11 @@ public class Game {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "game")
-	private List<Player> player;
+	private List<Player> players;
 	
-	@JsonIgnore
-	@ManyToMany
-	private List<Card> cards;
+	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
+	@JoinTable(name = "game_card", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "card_id"))
+	private Set<Card> gameCard = new HashSet<>();
 
 	public Game(String code) {
 		super();
@@ -55,20 +61,21 @@ public class Game {
 		this.code = code;
 	}
 
-	public List<Player> getPlayer() {
-		return player;
+	public List<Player> getPlayers() {
+		return players;
 	}
 
-	public void setPlayer(List<Player> player) {
-		this.player = player;
+	public void setPlayers(List<Player> players) {
+		this.players = players;
 	}
 
-	public List<Card> getCards() {
-		return cards;
+	public Set<Card> getGameCard() {
+		return gameCard;
 	}
 
-	public void setCards(List<Card> cards) {
-		this.cards = cards;
+	public void setGameCard(Set<Card> gameCard) {
+		this.gameCard = gameCard;
 	}
+	
 	
 }

@@ -1,5 +1,6 @@
 package RW.JuomaPeli.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -24,7 +25,7 @@ public class Player {
 	@Enumerated(EnumType.STRING)
     private Decision decision;
 	
-	@OneToOne(mappedBy = "player")
+	@OneToOne(mappedBy = "player", cascade = CascadeType.ALL)
 	private Character character;
 	
 	@ManyToOne

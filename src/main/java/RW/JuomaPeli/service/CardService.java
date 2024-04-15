@@ -16,20 +16,41 @@ public class CardService {
 	@Autowired
     private CardRepository cardRepository;
 
-    public List<List<Card>> dealCards(int numberOfPlayers) {
+    public List<Card> dealCards(int numberOfPlayers) {
     	List<Card> allCards = (List<Card>) cardRepository.findAll();
-    	List<Card> goodCards = new ArrayList<>();
-    	List<Card> badCards = new ArrayList<>();
+    	List<Card> cardsToDeal = new ArrayList<>();
+    	int totalNumOfCards = numberOfPlayers * 6;
+    	int goodCardsCount = 0, badCardsCount = 0, cardCount = 0, i = 0;
     	
-    	for(int i = 0; i < allCards.size(); i++) {
-    		Card card = allCards.get(i);
-    		if(card.getGoodTrait()) {
-    			goodCards.add(card);
-    		}
-    		else {
-    			badCards.add(card);
-    		}
+    	//Ei välttämättä paras ratkaisu, jos kortteja tehdään vaan 12 :D
+    	//Karvalakki korjauksena lisäsin korttien generointiin lukua
+    	if(totalNumOfCards > allCards.size()) {
+    		return null;
     	}
+    	
+    	Collections.shuffle(allCards);
+    	
+    	while(cardCount < totalNumOfCards) {
+    		Card card = allCards.get(i);
+    		if(card.getGoodTrait() && goodCardsCount < totalNumOfCards / 2) {
+    			cardsToDeal.add(card);
+    			goodCardsCount++;
+    			cardCount++;
+    		}
+    		else if(card.getGoodTrait() == false && badCardsCount < totalNumOfCards / 2) {
+    			cardsToDeal.add(card);
+    			badCardsCount++;
+    			cardCount++;
+    		}
+    		i++;
+    		
+    	}
+    	
+    	return cardsToDeal;
+    	
+    	/*
+    	 * Vedetään ns. pakasta päällimäinen kortti vuorolla, jolloin jokaiselle pelaajalle ei tavitse jakaa "kättä" suoraan
+    	 * Hyvä ratkaisu, ei vaan sovi tähän 
         Collections.shuffle(goodCards);
         Collections.shuffle(badCards);
 
@@ -46,7 +67,8 @@ public class CardService {
         	dealtCards.add(hand);
         }
 
-        return dealtCards;
+        return dealtCards; 
+        */
     }
 	
 }

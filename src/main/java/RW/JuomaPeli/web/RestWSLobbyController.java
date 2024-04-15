@@ -1,13 +1,16 @@
 package RW.JuomaPeli.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import RW.JuomaPeli.domain.GameRepository;
 import RW.JuomaPeli.domain.Player;
 import RW.JuomaPeli.domain.PlayerRepository;
 
@@ -18,6 +21,8 @@ public class RestWSLobbyController {
 	private SimpMessagingTemplate messagingTemplate;
 	@Autowired
 	private PlayerRepository pRepo;
+	@Autowired
+	private GameRepository gRepo;
 	
 	@DeleteMapping("/wsapi/lobby/{id}")
 	public void removePlayer(@PathVariable Long id) {
@@ -39,7 +44,13 @@ public class RestWSLobbyController {
 	 * fetch kutsuun ja beforeunload event listenerillä yritetään taata, että koodi ajetaan
 	 * kun käyttäjä sulkee selaimen
 	 */
-	
+
+	@GetMapping("/wsapi/start/{code}")
+	public void startGame(@PathVariable String code) {
+		System.out.println(code);
+		messagingTemplate.convertAndSend("/lobby/" + code, gRepo.findByCode(code));
+		System.out.println("testi");
+	} 
 }
 
 
