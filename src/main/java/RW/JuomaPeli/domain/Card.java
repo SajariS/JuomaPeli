@@ -21,7 +21,7 @@ public class Card {
 	@Column(name = "id", nullable = false, updatable = false)
 	private Long id;
 	
-	private String title;
+	//private String title;
 	
 	private String desc;
 	
@@ -47,13 +47,13 @@ public class Card {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
+//	public String getTitle() {
+//		return title;
+//	}
+//
+//	public void setTitle(String title) {
+//		this.title = title;
+//	}
 
 	public String getDesc() {
 		return desc;
