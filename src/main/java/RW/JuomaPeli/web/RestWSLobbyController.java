@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import RW.JuomaPeli.domain.GameRepository;
+import RW.JuomaPeli.domain.LobbyEvent;
 import RW.JuomaPeli.domain.Player;
 import RW.JuomaPeli.domain.PlayerRepository;
 
@@ -30,6 +31,8 @@ public class RestWSLobbyController {
 			Player player = pRepo.findById(id).get();
 			pRepo.deleteById(id);
 			messagingTemplate.convertAndSend("/lobby/" + player.getCode(), pRepo.findByCode(player.getCode()));
+			LobbyEvent kickEvent = new LobbyEvent(id);
+			messagingTemplate.convertAndSend("/lobby/" + player.getCode(), kickEvent);
 		}
 		catch(IllegalArgumentException e) {
 			System.out.println("Error: " + e.getMessage());
@@ -47,9 +50,7 @@ public class RestWSLobbyController {
 
 	@GetMapping("/wsapi/start/{code}")
 	public void startGame(@PathVariable String code) {
-		System.out.println(code);
 		messagingTemplate.convertAndSend("/lobby/" + code, gRepo.findByCode(code));
-		System.out.println("testi");
 	} 
 }
 
