@@ -27,6 +27,7 @@ public class Game {
 	private Long id;
 	
 	private String code;
+	private boolean started;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "game")
@@ -35,6 +36,13 @@ public class Game {
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	@JoinTable(name = "game_card", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "card_id"))
 	private Set<Card> gameCard = new HashSet<>();
+	
+	// Uusi constructor, ettei riko vanhoja
+	public Game(String code, boolean started) {
+		super();
+		this.code = code;
+		this.started = started;
+	}
 
 	public Game(String code) {
 		super();
@@ -43,6 +51,14 @@ public class Game {
 	
 	public Game() {
 	
+	}
+	
+	public boolean isStarted() {
+		return started;
+	}
+
+	public void setStarted(boolean started) {
+		this.started = started;
 	}
 
 	public Long getId() {
