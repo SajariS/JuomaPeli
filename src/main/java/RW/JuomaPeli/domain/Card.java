@@ -79,9 +79,9 @@ public class Card {
 		this.goodTrait = goodTrait;
 	}
 
-	public Card(String title, String desc, Boolean userMade, Boolean goodTrait) {
+	public Card(String desc, Boolean userMade, Boolean goodTrait) {
 		super();
-		this.title = title;
+		//this.title = title;
 		this.desc = desc;
 		this.userMade = userMade;
 		this.goodTrait = goodTrait;
