@@ -17,6 +17,7 @@ import RW.JuomaPeli.domain.Player;
 import RW.JuomaPeli.domain.PlayerRepository;
 import RW.JuomaPeli.domain.User;
 import RW.JuomaPeli.domain.UserRepository;
+import RW.JuomaPeli.service.CardService;
 
 @SpringBootApplication
 public class JuomaPeliApplication {
@@ -29,7 +30,7 @@ public class JuomaPeliApplication {
 	
 	@Bean
 	public CommandLineRunner demo(CardRepository cRepo, PlayerRepository pRepo, CharacterRepository characterRepo, GameRepository gRepo,
-			UserRepository uRepo) {
+			UserRepository uRepo, CardService cService) {
 	    return (args) -> {
 //	        for (int i = 0; i < 100; i++) {
 //	        	if(i % 2 == 0) {
@@ -48,6 +49,9 @@ public class JuomaPeliApplication {
 	        characterRepo.save(new Character("Kumppani", 30, null, pRepo.findByUserName("pelaaja"))); */
 	        //admin & admin, vaihdetaan myöhemmin
 	        uRepo.save(new User("admin", "$2y$10$CI3EBB65FEVSvuEQRj/ok.edyG8OL7HjkP3KpUZFxFzems2aDUcda", "ADMIN"));
+	        
+	        //Poista jos käytössä ulkoinen DB
+	        cService.generateCards();
 	        
 	    };
 	}

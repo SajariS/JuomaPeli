@@ -7,6 +7,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -103,6 +104,13 @@ public class CardService {
 			e.printStackTrace();
 		}
     	return null;
+    }
+    
+    public Card pullCard() {
+    	List<Card> cards = (List<Card>) cardRepository.findAll();
+    	Random random = new Random();
+    	int randomIndex = random.nextInt(cards.size());
+    	return cards.get(randomIndex);
     }
     
 	
