@@ -25,16 +25,47 @@ Pelin säännöt yms. selvitellään myöhemmin. Projekti voi mahdolliseti käyt
 
 # Teknologiat
 
-Java 17,
-SpringBoot 3.2.2
+- Java 17
+- SpringBoot 3.2.2
+- Spring Web
+- Spring WebSocket
+- Spring Data JPA
+- Spring Security
+- H2 Database
+- jaxb
+- jjwt
+- gson
+
+# Asennus
+
+Projektin mukana tulee dockerfile tiedosto, jonka avulla palvelimen voi pystyttää helposti konttiin. Tuorein versio löytyy myös dockerhubista tägillä sajaris/juomapeliback.
+
+Konttiasennukseen tarvitsee pelkästään Dockerin.
+
+## Asennus komennot
+
+### 1.a Imagen luonti
+```
+# docker build -f .\juomapeli.Dockerfile . -t <Imagen nimi>
+```
+
+### 1.b Imagen pull
+```
+# docker pull sajaris/juomapeliback:latest
+```
+
+### 2 Kontin luominen
+```
+# docker run -p 127.0.0.1:8080:8080 -d --rm <Imagen nimi>
+```
 
 # backlogit
 Tarinat: https://github.com/users/SajariS/projects/5/views/2
 Sprintti: https://github.com/users/SajariS/projects/6/views/1
 
-# RedWine
+# Yhteystidot
 
-Sampo Lehtonen,
-Karl Tamme,
-Sampo Westerholm,
-Santeri Sajari
+- Karl Tamme
+- Sampo Lehtonen
+- Sampo Westerholm
+- Santeri Sajari, santeri.sajari@gmail.com
