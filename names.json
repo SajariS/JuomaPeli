@@ -128,6 +128,27 @@
 		},
 		{
 			"name": "Roope"
+		},
+		{
+			"name": "Juhani"
+		},
+		{
+			"name": "Roope"
+		},
+		{
+			"name": "Mario"
+		},
+		{
+			"name": "Luigi"
+		},
+		{
+			"name": "Akseli"
+		},
+		{
+			"name": "Riku"
+		},
+		{
+			"name": "Benjamin"
 		}
 	],
 	"female_names": [
@@ -271,6 +292,16 @@
 		},
 		{
 			"name": "Elisa"
+		},
+		{
+			"name": "Nea"
+		},
+		{
+			"name": "Kia"
+		},
+		{
+			"name": "Saila"
 		}
+		 
 	]
 }
