@@ -91,5 +91,5 @@ Konttiasennukseen tarvitsee pelkästään Dockerin.
 
 - Karl Tamme, kaarlojuuolen@hotmail.com
 - Sampo Lehtonen, sampojolehtonen@gmail.com
-- Sampo Westerholm
+- Sampo Westerholm, sampo.westerholm@gmail.com
 - Santeri Sajari, santeri.sajari@gmail.com
