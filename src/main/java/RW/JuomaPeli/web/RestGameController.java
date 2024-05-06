@@ -23,7 +23,7 @@ public class RestGameController {
 	public ResponseEntity<Game> checkGameById(@PathVariable("code") String code) {
 		Optional<Game> game = Optional.ofNullable(gRepo.findByCode(code));
 		
-		if(game.isPresent()) {
+		if(game.isPresent() && !game.get().isStarted()) {
 			return new ResponseEntity<>(game.get(), HttpStatus.OK);
 		}
 		else {

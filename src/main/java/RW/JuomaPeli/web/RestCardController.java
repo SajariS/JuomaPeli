@@ -31,6 +31,12 @@ public class RestCardController {
 		return new ResponseEntity<List<Card>>(cards, HttpStatus.OK);
 	}
 	
+	@GetMapping("api/card")
+	public ResponseEntity<Card> getOneCard(){
+		Card card = cRepo.findRandomCard();
+		return new ResponseEntity<Card>(card, HttpStatus.OK);
+	}
+	
 	@GetMapping("/api/cards/deal")
 	public ResponseEntity<?> dealCards(@RequestParam(required = true) int playerCount){
 		List<Card> cards = cardService.dealCards(playerCount);
@@ -65,5 +71,10 @@ public class RestCardController {
 			cRepo.save(card);
 		}
 		return new ResponseEntity<List<Card>>(cards, HttpStatus.OK);
+	}
+	
+	@PostMapping("/api/cards/generate")
+	public void generateCards() {
+		cardService.generateCards();
 	}
 }

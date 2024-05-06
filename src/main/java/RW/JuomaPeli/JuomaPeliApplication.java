@@ -17,9 +17,12 @@ import RW.JuomaPeli.domain.Player;
 import RW.JuomaPeli.domain.PlayerRepository;
 import RW.JuomaPeli.domain.User;
 import RW.JuomaPeli.domain.UserRepository;
+import RW.JuomaPeli.service.CardService;
 
 @SpringBootApplication
 public class JuomaPeliApplication {
+	
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(JuomaPeliApplication.class, args);
@@ -27,25 +30,28 @@ public class JuomaPeliApplication {
 	
 	@Bean
 	public CommandLineRunner demo(CardRepository cRepo, PlayerRepository pRepo, CharacterRepository characterRepo, GameRepository gRepo,
-			UserRepository uRepo) {
+			UserRepository uRepo, CardService cService) {
 	    return (args) -> {
-	        for (int i = 0; i < 100; i++) {
-	        	if(i % 2 == 0) {
-	        		Card card = new Card("Good Card " + (i + 1), "Description " + (i + 1), false, true);
-	        		cRepo.save(card);
-	        	}
-	        	else {
-	        		Card card = new Card("Bad Card " + (i + 1), "Description " + (i + 1), false, false);
-	        		cRepo.save(card);
-	        	}
-	            
-	        }
+//	        for (int i = 0; i < 100; i++) {
+//	        	if(i % 2 == 0) {
+//	        		Card card = new Card("Description " + (i + 1), false, true);
+//	        		cRepo.save(card);
+//	        	}
+//	        	else {
+//	        		Card card = new Card("Description " + (i + 1), false, false);
+//	        		cRepo.save(card);
+//	        	}
+//	            
+//	        }
 	        /*
 	        gRepo.save(new Game("123456"));
 	        pRepo.save(new Player("pelaaja", gRepo.findByCode("123456")));
 	        characterRepo.save(new Character("Kumppani", 30, null, pRepo.findByUserName("pelaaja"))); */
 	        //admin & admin, vaihdetaan myöhemmin
 	        uRepo.save(new User("admin", "$2y$10$CI3EBB65FEVSvuEQRj/ok.edyG8OL7HjkP3KpUZFxFzems2aDUcda", "ADMIN"));
+	        
+	        //Poista jos käytössä ulkoinen DB
+	        cService.generateCards();
 	        
 	    };
 	}

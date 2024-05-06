@@ -22,7 +22,7 @@ public class GameService {
 	private GameMapper gMapper;
 	
 	public Game setUpGame(String code) {
-		GameDTO gameDto = new GameDTO(code);
+		GameDTO gameDto = new GameDTO(code, false);
 		//Jatko kehitys pelaaja määrään, mennään nyt neljällä alkuun
 		List<Card> pulledCards = cService.dealCards(4);	
 		gameDto.setCards(pulledCards);

@@ -8,7 +8,13 @@ public class GameDTO {
 	private Long id;
 	private List<Player> players;
 	private List<Card> cards;
+	private boolean started;
 	
+	public GameDTO(String code, boolean started) {
+		super();
+		this.code = code;
+		this.started = started;
+	}
 	public GameDTO(String code, Long id, List<Player> players, List<Card> cards) {
 		super();
 		this.code = code;
@@ -22,6 +28,13 @@ public class GameDTO {
 	}
 	public GameDTO() {
 		super();
+	}
+	
+	public boolean isStarted() {
+		return started;
+	}
+	public void setStarted(boolean started) {
+		this.started = started;
 	}
 	public String getCode() {
 		return code;

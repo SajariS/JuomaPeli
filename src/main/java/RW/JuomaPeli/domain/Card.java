@@ -21,7 +21,7 @@ public class Card {
 	@Column(name = "id", nullable = false, updatable = false)
 	private Long id;
 	
-	private String title;
+	//private String title;
 	
 	private String desc;
 	
@@ -47,13 +47,13 @@ public class Card {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
+//	public String getTitle() {
+//		return title;
+//	}
+//
+//	public void setTitle(String title) {
+//		this.title = title;
+//	}
 
 	public String getDesc() {
 		return desc;
@@ -79,9 +79,9 @@ public class Card {
 		this.goodTrait = goodTrait;
 	}
 
-	public Card(String title, String desc, Boolean userMade, Boolean goodTrait) {
+	public Card(String desc, Boolean userMade, Boolean goodTrait) {
 		super();
-		this.title = title;
+		//this.title = title;
 		this.desc = desc;
 		this.userMade = userMade;
 		this.goodTrait = goodTrait;
