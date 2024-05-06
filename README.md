@@ -21,8 +21,17 @@ Treffipeli on suunniteltu tarjoamaan pelaajille viihdyttävää ja vuorovaikutte
 
 ## Kuvia käyttöliittymästä
 
-### Temp
-<img src="täytä" width="100" height="100"/>
+### Etusivu
+<img src="./images/etusivu.png" width="985" height="866"/>
+
+### Peliaula isännän näkökulmasta
+<img src="./images/LobbyHost.png" width="837" height="833"/>
+
+### Peliruutu kumppani
+<img src="./images/PeliRuutuHahmo.png" width="622" height="690/>
+
+### Peliruutu vuoro
+<img src="./images/PeliRuutuVuoro.png" width="726" height="702"/>
 
 
 # Teknologiat
@@ -40,7 +49,14 @@ Treffipeli on suunniteltu tarjoamaan pelaajille viihdyttävää ja vuorovaikutte
 - gson
 
 ### Frontend
-
+- React 18.2.0
+- Vite 5.0.8
+- stomp/stompjs 7.0.0
+- sockjs-client 1.6.1
+- mui/material
+- mui/icons-material
+- emotion/react
+- emotion/styled
 
 # Asennus
 
