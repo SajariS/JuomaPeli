@@ -71,7 +71,7 @@ Konttiasennukseen tarvitsee pelkästään Dockerin.
 
 # Yhteystidot
 
-- Karl Tamme
+- Karl Tamme, kaarlojuuolen@hotmail.com
 - Sampo Lehtonen, sampojolehtonen@gmail.com
 - Sampo Westerholm
 - Santeri Sajari, santeri.sajari@gmail.com
