@@ -66,6 +66,6 @@ Sprintti: https://github.com/users/SajariS/projects/6/views/1
 # Yhteystidot
 
 - Karl Tamme
-- Sampo Lehtonen
+- Sampo Lehtonen, sampojolehtonen@gmail.com
 - Sampo Westerholm
 - Santeri Sajari, santeri.sajari@gmail.com

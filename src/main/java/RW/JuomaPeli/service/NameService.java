@@ -26,7 +26,7 @@ public class NameService {
 
 	public String generateMaleName(){
 		Random random = new Random();
-		int index = random.nextInt(51);
+		int index = random.nextInt(50);
 		NameList names = getAllNames();
 		Name name =  names.getMaleNames().get(index);
 		String strName = name.getName();
@@ -35,7 +35,7 @@ public class NameService {
 	
 	public String generateFemaleName(){
 		Random random = new Random();
-		int index = random.nextInt(51);
+		int index = random.nextInt(50);
 		NameList names = getAllNames();
 		Name name =  names.getFemaleNames().get(index);
 		String strName = name.getName();
