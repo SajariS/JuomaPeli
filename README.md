@@ -84,7 +84,8 @@ Konttiasennukseen tarvitsee pelkästään Dockerin.
 # Linkit
 - Tarinat: https://github.com/users/SajariS/projects/5/views/2
 - Sprintti: https://github.com/users/SajariS/projects/6/views/1
-- Loppuraportti: https://github.com/SajariS/JuomaPeli/blob/main/LICENSE.md
+- Lisenssi: https://github.com/SajariS/JuomaPeli/blob/main/LICENSE.md
+- Loppuraportti: https://github.com/SajariS/JuomaPeli/blob/main/loppuraportti.md
 
 # Yhteystidot
 
