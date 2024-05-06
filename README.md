@@ -17,7 +17,7 @@ Treffipeli on suunniteltu tarjoamaan pelaajille viihdyttävää ja vuorovaikutte
 
 # Käyttöliittymä
 - Suunnitelma, https://www.figma.com/file/w838b3bW6LBu98DKPo6hQJ/Treffipeli?type=design&node-id=2%3A2&mode=design&t=ilmjYHuqAJE0XGyR-1
-- Client, <a href="">Täytä</a>
+- Client, <a href="https://github.com/SajariS/Juomapeli-front">https://github.com/SajariS/Juomapeli-front</a>
 
 ## Kuvia käyttöliittymästä
 
@@ -68,6 +68,7 @@ Konttiasennukseen tarvitsee pelkästään Dockerin.
 # Linkit
 - Tarinat: https://github.com/users/SajariS/projects/5/views/2
 - Sprintti: https://github.com/users/SajariS/projects/6/views/1
+- Loppuraportti: https://github.com/SajariS/JuomaPeli/blob/main/LICENSE.md
 
 # Yhteystidot
 
