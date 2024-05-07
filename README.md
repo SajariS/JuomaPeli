@@ -28,7 +28,7 @@ Treffipeli on suunniteltu tarjoamaan pelaajille viihdyttävää ja vuorovaikutte
 <img src="./images/LobbyHost.png" width="837" height="833"/>
 
 ### Peliruutu kumppani
-<img src="./images/PeliRuutuHahmo.png" width="622" height="690/>
+<img src="./images/PeliRuutuHahmo.png" width="622" height="690" />
 
 ### Peliruutu vuoro
 <img src="./images/PeliRuutuVuoro.png" width="726" height="702"/>
