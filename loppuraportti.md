@@ -2,21 +2,21 @@
 
 ## Haasteet
 
-Ajan kanssa ja alussa hieman teknisiä. Projektin hallinnan kanssa backlogit jäivät tekemättä.
+Ajan kanssa ja alussa hieman teknisiä haasteita. Projektin hallinnan kanssa backlogit jäivät tekemättä. Välillä oli väärinkäsityksiä toteutuksen suhteen, jotka hidastivat työskentelyä ja tuottivat turhaa työtä.
 
 ## Ratkaisut 
 
-Aika ongelmat ratkaisut hoidettiin etätapaamisella kerran viikossa ja työtilanteen mukaan hommien kasaamisella.
-Tekniset ongelmat ratkaistiin kysymällä muilla ja selvittämällä internetistä(chat-GPT ja erillaiset foorumit).
+Aika ongelmat ratkaistiin hoitamalla etätapaamisia kerran viikossa ja työtilanteen mukaan taskien kasaamisella.
+Tekniset ongelmat ratkaistiin kysymällä muilla ja selvittämällä internetistä(chat-GPT ja erilaiset foorumit).
 Backlokeja ei ratkaistuja
 
 ## Onnistumiset
 
-Tehtävien jako ryhmän kesken ja projektin tekninentoteutus.
+Tehtävien jako ryhmän kesken ja projektin tekninen toteutus. Loppujen lopuksi saatiin julkaisu valmis tuote tehtyä, johonka voidaan olla erittäin tyytyväisiä.
 
 ## Parantamiset
 
-Ajanhallinta.
+Ajanhallintaan ja kommunikointiin tiimiläisten kanssa on selkeitä parannuksen mahdollisuuksia. Tehokkaampi aikataulutus ja avoimempi kommunikaatio auttaisivat varmistamaan projektin sujuvuuden ja tiimityön tehokkuuden.
 
 ## Oppiminen
 
